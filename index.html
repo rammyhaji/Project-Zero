@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ramla is a creative web designer creating modern, responsive and user-friendly websites.">
+  <meta name="author" content="Ramla">
+  <meta name="theme-color" content="#7c3aed">
+  <title>Ramla | Web Designer</title>
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;background:#08080c;color:#f5f5f5;line-height:1.6;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+    button,input,textarea,select{font:inherit}
+    button{cursor:pointer}
+    img{max-width:100%;display:block}
+    :root{--primary:#8b5cf6;--secondary:#ec4899;--surface:#111118;--surface2:#181820;--border:rgba(255,255,255,.09);--muted:#a1a1aa;--max:1180px}
+    .container{width:min(92%,var(--max));margin:auto}
+    section{padding:100px 0;scroll-margin-top:80px}
+    .section-heading{max-width:700px;margin:0 auto 55px;text-align:center}
+    .section-label{display:inline-block;color:#c4b5fd;font-size:.85rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
+    .section-heading h2{font-size:clamp(2rem,5vw,3.5rem);line-height:1.1;margin-bottom:18px}
+    .section-heading p,.hero-description,.about-content p,.service-card p,.project-info p,.process-card p,.testimonial p,.price-description,.contact-info>p,.cta p{color:var(--muted)}
+    body:before{content:"";position:fixed;width:500px;height:500px;top:-250px;left:-250px;background:rgba(124,58,237,.18);filter:blur(120px);border-radius:50%;pointer-events:none;z-index:-1}
+    body:after{content:"";position:fixed;width:450px;height:450px;right:-220px;top:40%;background:rgba(236,72,153,.1);filter:blur(120px);border-radius:50%;pointer-events:none;z-index:-1}
+
+    header{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(8,8,12,.75);backdrop-filter:blur(18px);border-bottom:1px solid transparent;transition:.3s}
+    header.scrolled{border-color:var(--border)}
+    nav{height:75px;display:flex;align-items:center;justify-content:space-between}
+    .logo{font-size:1.45rem;font-weight:900;letter-spacing:-1px}.logo span{color:var(--primary)}
+    .nav-links{display:flex;align-items:center;gap:28px;list-style:none}
+    .nav-links a{color:#d4d4d8;font-size:.95rem;transition:.25s}.nav-links a:hover,.nav-links a.active{color:#fff}
+    .nav-actions{display:flex;align-items:center;gap:12px}
+    .theme-toggle,.menu-toggle{width:42px;height:42px;border:1px solid var(--border);border-radius:50%;background:var(--surface);color:white;display:grid;place-items:center}
+    .menu-toggle{display:none;border-radius:10px;font-size:1.2rem}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:999px;border:1px solid transparent;font-weight:700;transition:.25s}
+    .btn:hover{transform:translateY(-3px)}
+    .btn-primary{color:#fff;background:linear-gradient(135deg,var(--primary),var(--secondary));box-shadow:0 10px 30px rgba(139,92,246,.22)}
+    .btn-outline{border-color:var(--border);background:var(--surface);color:#fff}
+
+    .hero{min-height:100vh;display:flex;align-items:center;padding-top:120px}
+    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:center}
+    .hero-badge{display:inline-flex;align-items:center;gap:9px;padding:8px 13px;border-radius:999px;background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.25);color:#c4b5fd;font-size:.85rem;margin-bottom:22px}
+    .status-dot{width:8px;height:8px;background:#22c55e;border-radius:50%;box-shadow:0 0 12px rgba(34,197,94,.8)}
+    .hero h1{font-size:clamp(3.1rem,7vw,6rem);line-height:.98;letter-spacing:-4px;margin-bottom:25px}
+    .gradient-text{background:linear-gradient(135deg,#a78bfa,#f472b6);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero-description{max-width:650px;font-size:1.12rem;margin-bottom:30px}
+    .hero-buttons{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:35px}
+    .hero-socials{display:flex;gap:12px}
+    .social-link{width:42px;height:42px;border:1px solid var(--border);background:var(--surface);border-radius:50%;display:grid;place-items:center;font-weight:700;color:#d4d4d8;transition:.25s}
+    .social-link:hover{background:var(--primary);border-color:var(--primary);transform:translateY(-3px)}
+
+    .profile-card{position:relative;padding:28px;border:1px solid var(--border);background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border-radius:30px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+    .profile-card:before{content:"";position:absolute;width:200px;height:200px;background:var(--primary);filter:blur(100px);opacity:.3;right:-80px;top:-80px}
+    .profile-avatar{width:170px;height:170px;margin:15px auto 25px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#8b5cf6,#ec4899);border:6px solid rgba(255,255,255,.08);overflow:hidden;position:relative}
+    .profile-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+    .profile-card h3{text-align:center;font-size:1.7rem;margin-bottom:5px}.profile-card>p{text-align:center;color:var(--muted)}
+    .profile-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:30px}
+    .stat{padding:16px 8px;text-align:center;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:15px}
+    .stat strong{display:block;font-size:1.3rem}.stat span{color:var(--muted);font-size:.75rem}
+
+    .trust-bar{padding:25px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .trust-content{display:flex;justify-content:center;align-items:center;gap:40px;flex-wrap:wrap;color:#71717a;font-weight:700}
+
+    .about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:center}
+    .about-image{min-height:500px;padding:35px;border:1px solid var(--border);border-radius:30px;background:radial-gradient(circle at 30% 25%,rgba(139,92,246,.4),transparent 30%),radial-gradient(circle at 80% 80%,rgba(236,72,153,.3),transparent 35%),var(--surface);display:grid;place-items:center;overflow:hidden}
+    .about-photo{width:100%;max-width:360px;aspect-ratio:1/1;object-fit:cover;border-radius:30px;border:5px solid rgba(255,255,255,.08);box-shadow:0 25px 60px rgba(0,0,0,.35)}
+    .about-content h2{font-size:clamp(2.2rem,5vw,3.5rem);line-height:1.1;margin-bottom:20px}
+    .about-content p{margin-bottom:17px}
+    .about-list{list-style:none;display:grid;gap:12px;margin:25px 0}.about-list li{display:flex;gap:10px;align-items:center}
+    .check{width:23px;height:23px;border-radius:50%;display:grid;place-items:center;background:rgba(139,92,246,.15);color:#a78bfa;flex-shrink:0}
+
+    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .service-card{padding:30px;background:var(--surface);border:1px solid var(--border);border-radius:20px;transition:.3s}
+    .service-card:hover{transform:translateY(-7px);border-color:rgba(139,92,246,.4);box-shadow:0 20px 50px rgba(0,0,0,.2)}
+    .service-icon{width:55px;height:55px;border-radius:15px;display:grid;place-items:center;background:rgba(139,92,246,.12);color:#c4b5fd;font-size:1.5rem;margin-bottom:22px}
+    .service-card h3{margin-bottom:10px;font-size:1.25rem}
+
+    .skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+    .skill{padding:22px;border:1px solid var(--border);background:var(--surface);border-radius:16px}
+    .skill-header{display:flex;justify-content:space-between;margin-bottom:12px;font-weight:700}.skill-header span:last-child{color:#a78bfa}
+    .progress{height:8px;border-radius:999px;overflow:hidden;background:#27272a}.progress span{display:block;height:100%;width:0;border-radius:inherit;background:linear-gradient(90deg,var(--primary),var(--secondary));transition:width 1.3s}
+
+    .portfolio-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:25px}
+    .project-card{overflow:hidden;border:1px solid var(--border);border-radius:24px;background:var(--surface);transition:.3s}.project-card:hover{transform:translateY(-5px)}
+    .project-image{min-height:280px;display:grid;place-items:center;padding:30px;overflow:hidden}
+    .project-image.one{background:linear-gradient(135deg,#312e81,#7c3aed)}.project-image.two{background:linear-gradient(135deg,#831843,#be185d)}.project-image.three{background:linear-gradient(135deg,#164e63,#0e7490)}.project-image.four{background:linear-gradient(135deg,#14532d,#15803d)}
+    .browser-window{width:90%;height:180px;background:#fafafa;border-radius:10px;overflow:hidden;box-shadow:0 25px 50px rgba(0,0,0,.3)}
+    .browser-top{height:28px;background:#e4e4e7;display:flex;align-items:center;gap:5px;padding-left:10px}.browser-dot{width:7px;height:7px;border-radius:50%;background:#71717a}
+    .browser-body{padding:20px;color:#18181b}.browser-line{height:9px;background:#d4d4d8;border-radius:5px;margin-bottom:10px}.browser-line.short{width:50%}.browser-block{height:60px;margin-top:18px;background:#e4e4e7;border-radius:7px}
+    .project-info{padding:25px}.project-info h3{font-size:1.35rem;margin-bottom:7px}.project-info p{margin-bottom:16px}.project-tags{display:flex;gap:8px;flex-wrap:wrap}.tag{padding:5px 10px;border-radius:999px;background:rgba(139,92,246,.1);color:#c4b5fd;font-size:.75rem}
+
+    .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}.process-card{padding:25px;border:1px solid var(--border);background:var(--surface);border-radius:18px}.process-number{font-size:.8rem;color:#a78bfa;font-weight:800;margin-bottom:18px}.process-card h3{margin-bottom:8px}.process-card p{font-size:.9rem}
+
+    .testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.testimonial{padding:28px;border:1px solid var(--border);background:var(--surface);border-radius:20px}.stars{color:#fbbf24;margin-bottom:15px;letter-spacing:2px}.testimonial p{margin-bottom:22px}.client{display:flex;align-items:center;gap:12px}.client-avatar{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--primary),var(--secondary));font-weight:800}.client small{display:block;color:var(--muted)}
+
+    .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.price-card{padding:30px;background:var(--surface);border:1px solid var(--border);border-radius:22px}.price-card.featured{border-color:rgba(139,92,246,.65);box-shadow:0 20px 60px rgba(124,58,237,.12);transform:translateY(-8px)}.popular{display:inline-block;padding:5px 10px;background:var(--primary);border-radius:999px;font-size:.7rem;font-weight:800;margin-bottom:15px}.price-card h3{margin-bottom:8px}.price-description{font-size:.9rem;min-height:45px}.price{font-size:2.7rem;font-weight:900;margin:22px 0}.price span{font-size:.9rem;color:var(--muted);font-weight:400}.price-list{list-style:none;display:grid;gap:12px;margin-bottom:25px}.price-list li{color:#d4d4d8;font-size:.9rem}
+
+    .faq{max-width:850px;margin:auto}.faq-item{border-bottom:1px solid var(--border)}.faq-question{width:100%;border:0;background:transparent;color:white;padding:22px 0;display:flex;justify-content:space-between;align-items:center;text-align:left;font-weight:700;font-size:1rem}.faq-icon{font-size:1.4rem;transition:.3s;color:#a78bfa}.faq-answer{max-height:0;overflow:hidden;transition:max-height .35s}.faq-answer p{color:var(--muted);padding:0 0 20px}.faq-item.open .faq-icon{transform:rotate(45deg)}
+
+    .contact-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:25px}.contact-info,.contact-form{padding:30px;border:1px solid var(--border);border-radius:22px;background:var(--surface)}.contact-info h3,.contact-form h3{font-size:1.5rem;margin-bottom:10px}.contact-info>p{margin-bottom:28px}.contact-detail{display:flex;gap:13px;margin-bottom:20px}.contact-icon{width:42px;height:42px;display:grid;place-items:center;border-radius:12px;background:rgba(139,92,246,.12);color:#c4b5fd;flex-shrink:0}.contact-detail small{color:var(--muted);display:block}.contact-form form{display:grid;gap:16px}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}.form-group{display:grid;gap:7px}.form-group label{font-size:.85rem;color:#d4d4d8;font-weight:600}.form-group input,.form-group textarea,.form-group select{width:100%;padding:13px 15px;border:1px solid var(--border);border-radius:12px;background:#0c0c11;color:white;outline:none}.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(139,92,246,.1)}.form-group textarea{min-height:140px;resize:vertical}.form-message{display:none;padding:12px;border-radius:10px;background:rgba(34,197,94,.1);color:#86efac;font-size:.9rem}
+
+    .cta{padding:80px 30px;text-align:center;border:1px solid rgba(139,92,246,.25);border-radius:30px;background:radial-gradient(circle at 50% 0%,rgba(139,92,246,.2),transparent 45%),var(--surface)}.cta h2{font-size:clamp(2rem,5vw,3.5rem);margin-bottom:15px}.cta p{max-width:650px;margin:0 auto 25px}
+
+    footer{padding:45px 0 25px;border-top:1px solid var(--border)}.footer-top{display:flex;justify-content:space-between;gap:30px;align-items:center;padding-bottom:30px}.footer-brand p{color:var(--muted);max-width:400px;margin-top:8px}.footer-links{display:flex;gap:20px;color:var(--muted);font-size:.9rem;flex-wrap:wrap}.footer-links a:hover{color:white}.copyright{padding-top:25px;border-top:1px solid var(--border);color:#71717a;font-size:.85rem;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+    .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s}.reveal.visible{opacity:1;transform:translateY(0)}
+
+    body.light{background:#f8fafc;color:#18181b;--surface:#fff;--surface2:#f4f4f5;--border:rgba(24,24,27,.1);--muted:#52525b}
+    body.light header{background:rgba(248,250,252,.8)}body.light .nav-links a,body.light .theme-toggle,body.light .menu-toggle,body.light .social-link,body.light .btn-outline{color:#27272a}body.light .form-group input,body.light .form-group textarea,body.light .form-group select{background:#fafafa;color:#18181b}body.light .faq-question{color:#18181b}
+
+    @media(max-width:950px){.hero-grid,.about-grid,.contact-grid{grid-template-columns:1fr}.hero-content{text-align:center}.hero-description{margin-inline:auto}.hero-buttons,.hero-socials{justify-content:center}.services-grid,.testimonials,.pricing-grid{grid-template-columns:repeat(2,1fr)}.process-grid{grid-template-columns:repeat(2,1fr)}.about-image{min-height:350px}}
+    @media(max-width:760px){section{padding:75px 0}.nav-links{position:absolute;top:75px;left:4%;right:4%;display:none;flex-direction:column;align-items:stretch;padding:20px;border:1px solid var(--border);border-radius:18px;background:rgba(17,17,24,.97);box-shadow:0 20px 50px rgba(0,0,0,.3)}.nav-links.open{display:flex}.nav-links a{padding:10px}.menu-toggle{display:grid}.nav-actions .btn{display:none}.hero h1{letter-spacing:-2px}.portfolio-grid,.services-grid,.testimonials,.pricing-grid,.skills-grid,.process-grid{grid-template-columns:1fr}.price-card.featured{transform:none}.form-row{grid-template-columns:1fr}.footer-top{flex-direction:column;align-items:flex-start}}
+    @media(max-width:450px){.hero-buttons .btn{width:100%}.profile-stats{grid-template-columns:1fr}.copyright{flex-direction:column}}
+  </style>
+</head>
+
+<body>
+<header id="header">
+  <div class="container">
+    <nav>
+      <a href="#home" class="logo">Ramla<span>.</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark and light mode">☀</button>
+        <a href="#contact" class="btn btn-primary">Let's Talk</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content reveal">
+        <div class="hero-badge"><span class="status-dot"></span>Available for new projects</div>
+        <h1>Hi, I'm <span class="gradient-text">Ramla.</span><br>I design the web.</h1>
+        <p class="hero-description">I'm a creative web designer focused on building beautiful, responsive and user-friendly websites that help brands stand out online.</p>
+        <div class="hero-buttons">
+          <a href="#portfolio" class="btn btn-primary">View My Work →</a>
+          <a href="#contact" class="btn btn-outline">Start a Project</a>
+        </div>
+        <div class="hero-socials">
+          <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">GH</a>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">in</a>
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">IG</a>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal">
+        <div class="profile-card">
+          <div class="profile-avatar">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=500&q=80" alt="Sample profile portrait for Ramla">
+          </div>
+          <h3>Ramla</h3>
+          <p>Web Designer & Creative Developer</p>
+          <div class="profile-stats">
+            <div class="stat"><strong>20+</strong><span>Projects</span></div>
+            <div class="stat"><strong>100%</strong><span>Responsive</span></div>
+            <div class="stat"><strong>24/7</strong><span>Creative</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="trust-bar"><div class="container"><div class="trust-content"><span>MODERN DESIGN</span><span>•</span><span>RESPONSIVE WEBSITES</span><span>•</span><span>CREATIVE SOLUTIONS</span><span>•</span><span>USER EXPERIENCE</span></div></div></div>
+
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image reveal">
+        <img class="about-photo" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=700&q=80" alt="Sample profile portrait for Ramla">
+      </div>
+      <div class="about-content reveal">
+        <span class="section-label">About Me</span>
+        <h2>Turning ideas into <span class="gradient-text">digital experiences.</span></h2>
+        <p>I'm Ramla, a web designer passionate about creating websites that look great and feel effortless to use.</p>
+        <p>I combine creativity, thoughtful layouts and modern web technologies to create digital experiences that represent a brand and connect with its audience.</p>
+        <ul class="about-list">
+          <li><span class="check">✓</span>Clean and modern designs</li>
+          <li><span class="check">✓</span>Mobile-first responsive layouts</li>
+          <li><span class="check">✓</span>User-focused experiences</li>
+          <li><span class="check">✓</span>Fast and accessible websites</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary">Work With Me →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <div class="section-heading reveal">
+      <span class="section-label">What I Do</span>
+      <h2>Services designed around <span class="gradient-text">your goals.</span></h2>
+      <p>From the first idea to the final website, I help turn concepts into polished digital experiences.</p>
+    </div>
+    <div class="services-grid">
+      <article class="service-card reveal"><div class="service-icon">✦</div><h3>Web Design</h3><p>Modern and visually engaging website designs built around your brand, audience and goals.</p></article>
+      <article class="service-card reveal"><div class="service-icon">⌘</div><h3>Responsive Design</h3><p>Websites that look beautiful and work smoothly on phones, tablets, laptops and desktop screens.</p></article>
+      <article class="service-card reveal"><div class="service-icon">◈</div><h3>UI/UX Design</h3><p>Thoughtful interfaces and user experiences that make websites simple, intuitive and enjoyable.</p></article>
+      <article class="service-card reveal"><div class="service-icon">⚡</div><h3>Frontend Development</h3><p>Clean frontend development using modern HTML, CSS and JavaScript techniques.</p></article>
+      <article class="service-card reveal"><div class="service-icon">◎</div><h3>Landing Pages</h3><p>High-impact landing pages designed to communicate your message clearly and encourage action.</p></article>
+      <article class="service-card reveal"><div class="service-icon">↻</div><h3>Website Redesign</h3><p>Transform an outdated website into a cleaner, faster and more modern digital experience.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+    <div class="section-heading reveal"><span class="section-label">My Skills</span><h2>Tools and skills I use to <span class="gradient-text">create.</span></h2></div>
+    <div class="skills-grid">
+      <div class="skill reveal"><div class="skill-header"><span>HTML</span><span>95%</span></div><div class="progress"><span data-width="95%"></span></div></div>
+      <div class="skill reveal"><div class="skill-header"><span>CSS</span><span>92%</span></div><div class="progress"><span data-width="92%"></span></div></div>
+      <div class="skill reveal"><div class="skill-header"><span>JavaScript</span><span>82%</span></div><div class="progress"><span data-width="82%"></span></div></div>
+      <div class="skill reveal"><div class="skill-header"><span>UI/UX Design</span><span>90%</span></div><div class="progress"><span data-width="90%"></span></div></div>
+      <div class="skill reveal"><div class="skill-header"><span>Responsive Design</span><span>95%</span></div><div class="progress"><span data-width="95%"></span></div></div>
+      <div class="skill reveal"><div class="skill-header"><span>Figma</span><span>85%</span></div><div class="progress"><span data-width="85%"></span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="portfolio">
+  <div class="container">
+    <div class="section-heading reveal"><span class="section-label">Portfolio</span><h2>Selected <span class="gradient-text">projects.</span></h2><p>A selection of website concepts demonstrating my approach to modern web design.</p></div>
+    <div class="portfolio-grid">
+      <article class="project-card reveal"><div class="project-image one"><div class="browser-window"><div class="browser-top"><span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span></div><div class="browser-body"><div class="browser-line"></div><div class="browser-line short"></div><div class="browser-block"></div></div></div></div><div class="project-info"><h3>Creative Studio</h3><p>A modern portfolio website for a creative agency.</p><div class="project-tags"><span class="tag">Web Design</span><span class="tag">UI/UX</span><span class="tag">Responsive</span></div></div></article>
+      <article class="project-card reveal"><div class="project-image two"><div class="browser-window"><div class="browser-top"><span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span></div><div class="browser-body"><div class="browser-line"></div><div class="browser-line short"></div><div class="browser-block"></div></div></div></div><div class="project-info"><h3>Fashion Brand</h3><p>An elegant online presence designed for a fashion brand.</p><div class="project-tags"><span class="tag">Branding</span><span class="tag">E-commerce</span><span class="tag">UI Design</span></div></div></article>
+      <article class="project-card reveal"><div class="project-image three"><div class="browser-window"><div class="browser-top"><span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span></div><div class="browser-body"><div class="browser-line"></div><div class="browser-line short"></div><div class="browser-block"></div></div></div></div><div class="project-info"><h3>Tech Startup</h3><p>A clean landing page created for a technology startup.</p><div class="project-tags"><span class="tag">Landing Page</span><span class="tag">Startup</span><span class="tag">Frontend</span></div></div></article>
+      <article class="project-card reveal"><div class="project-image four"><div class="browser-window"><div class="browser-top"><span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span></div><div class="browser-body"><div class="browser-line"></div><div class="browser-line short"></div><div class="browser-block"></div></div></div></div><div class="project-info"><h3>Business Website</h3><p>A professional website concept for a growing business.</p><div class="project-tags"><span class="tag">Business</span><span class="tag">Web Design</span><span class="tag">Development</span></div></div></article>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="container">
+    <div class="section-heading reveal"><span class="section-label">My Process</span><h2>From idea to <span class="gradient-text">launch.</span></h2><p>A straightforward process designed to keep your project organized and moving forward.</p></div>
+    <div class="process-grid">
+      <article class="process-card reveal"><div class="process-number">01 / DISCOVER</div><h3>Understand</h3><p>We discuss your goals, audience, brand and what your website needs to achieve.</p></article>
+      <article class="process-card reveal"><div class="process-number">02 / DESIGN</div><h3>Create</h3><p>I develop the visual direction, layout and user experience for your website.</p></article>
+      <article class="process-card reveal"><div class="process-number">03 / BUILD</div><h3>Develop</h3><p>The approved design becomes a responsive, functional website.</p></article>
+      <article class="process-card reveal"><div class="process-number">04 / LAUNCH</div><h3>Deliver</h3><p>After final testing and improvements, your website is ready to go live.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials">
+  <div class="container">
+    <div class="section-heading reveal"><span class="section-label">Testimonials</span><h2>What clients <span class="gradient-text">say.</span></h2></div>
+    <div class="testimonials">
+      <article class="testimonial reveal"><div class="stars">★★★★★</div><p>“Ramla understood the vision and transformed it into a clean and professional website concept.”</p><div class="client"><div class="client-avatar">A</div><div><strong>Client Name</strong><small>Business Owner</small></div></div></article>
+      <article class="testimonial reveal"><div class="stars">★★★★★</div><p>“The design feels modern, professional and incredibly easy to navigate. I loved the attention to detail.”</p><div class="client"><div class="client-avatar">S</div><div><strong>Client Name</strong><small>Creative Entrepreneur</small></div></div></article>
+      <article class="testimonial reveal"><div class="stars">★★★★★</div><p>“A great experience from beginning to end. The final result was clean, responsive and exactly what I needed.”</p><div class="client"><div class="client-avatar">M</div><div><strong>Client Name</strong><small>Startup Founder</small></div></div></article>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="container">
+    <div class="section-heading reveal"><span class="section-label">Pricing</span><h2>Simple packages, <span class="gradient-text">flexible projects.</span></h2><p>Choose a starting package or contact me for a custom quote based on your project.</p></div>
+    <div class="pricing-grid">
+      <article class="price-card reveal"><h3>Starter</h3><p class="price-description">Perfect for a simple personal or small business website.</p><div class="price">$150 <span>/ project</span></div><ul class="price-list"><li>✓ 1–3 pages</li><li>✓ Responsive design</li><li>✓ Contact section</li><li>✓ Basic animations</li><li>✓ Mobile optimization</li></ul><a href="#contact" class="btn btn-outline">Choose Starter</a></article>
+      <article class="price-card featured reveal"><span class="popular">MOST POPULAR</span><h3>Professional</h3><p class="price-description">A complete professional website for a growing brand.</p><div class="price">$300 <span>/ project</span></div><ul class="price-list"><li>✓ 4–7 pages</li><li>✓ Custom UI/UX</li><li>✓ Responsive design</li><li>✓ Interactive elements</li><li>✓ SEO-ready structure</li><li>✓ Performance optimization</li></ul><a href="#contact" class="btn btn-primary">Choose Professional</a></article>
+      <article class="price-card reveal"><h3>Custom</h3><p class="price-description">For advanced websites requiring custom features.</p><div class="price">Let's Talk</div><ul class="price-list"><li>✓ Custom number of pages</li><li>✓ Advanced functionality</li><li>✓ Custom integrations</li><li>✓ Advanced animations</li><li>✓ Personalized workflow</li></ul><a href="#contact" class="btn btn-outline">Get a Quote</a></article>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container">
+    <div class="section-heading reveal"><span class="section-label">FAQ</span><h2>Frequently asked <span class="gradient-text">questions.</span></h2></div>
+    <div class="faq">
+      <div class="faq-item reveal"><button class="faq-question">What type of websites do you design?<span class="faq-icon">+</span></button><div class="faq-answer"><p>I design portfolio websites, business websites, landing pages, personal websites, creative websites and other custom web experiences.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-question">Will my website work on mobile?<span class="faq-icon">+</span></button><div class="faq-answer"><p>Yes. Responsive design is built into the website so it adapts to phones, tablets and desktop screens.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-question">How long does a website take?<span class="faq-icon">+</span></button><div class="faq-answer"><p>Project time depends on the number of pages, features and revisions. A simple website can be completed much faster than a larger custom project.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-question">Can you redesign an existing website?<span class="faq-icon">+</span></button><div class="faq-answer"><p>Yes. An existing website can be redesigned with a more modern layout, improved usability and responsive behavior.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-question">How can I start a project?<span class="faq-icon">+</span></button><div class="faq-answer"><p>Use the contact form below and tell me about your project, goals and what you need. I'll use that information as the starting point for the conversation.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="section-heading reveal"><span class="section-label">Contact</span><h2>Let's build something <span class="gradient-text">great.</span></h2><p>Have an idea, project or website in mind? Send me a message and let's talk about it.</p></div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <h3>Let's connect</h3><p>Tell me about your project and I'll get back to you with the next steps.</p>
+        <div class="contact-detail"><div class="contact-icon">✉</div><div><small>Email</small><strong>your@email.com</strong></div></div>
+        <div class="contact-detail"><div class="contact-icon">⌖</div><div><small>Location</small><strong>Kenya</strong></div></div>
+        <div class="contact-detail"><div class="contact-icon">◷</div><div><small>Availability</small><strong>Open for projects</strong></div></div>
+      </div>
+      <div class="contact-form reveal">
+        <h3>Send a message</h3>
+        <form id="contactForm">
+          <div class="form-row">
+            <div class="form-group"><label for="name">Your Name</label><input type="text" id="name" placeholder="Enter your name" required></div>
+            <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" placeholder="you@example.com" required></div>
+          </div>
+          <div class="form-group"><label for="service">What do you need?</label><select id="service" required><option value="">Select a service</option><option>Web Design</option><option>Complete Website</option><option>Landing Page</option><option>Website Redesign</option><option>UI/UX Design</option><option>Other</option></select></div>
+          <div class="form-group"><label for="message">Project Details</label><textarea id="message" placeholder="Tell me about your project..." required></textarea></div>
+          <div class="form-message" id="formMessage">Thanks! Your message has been received on this demo form. Connect the form to your email service before publishing.</div>
+          <button type="submit" class="btn btn-primary">Send Message →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container"><div class="cta reveal"><h2>Have an idea? <span class="gradient-text">Let's create it.</span></h2><p>Your next website could be the beginning of something amazing. Let's turn your idea into a digital experience.</p><a href="#contact" class="btn btn-primary">Start Your Project →</a></div></div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand"><a href="#home" class="logo">Ramla<span>.</span></a><p>Creative web designer creating modern digital experiences for people and brands.</p></div>
+      <div class="footer-links"><a href="#about">About</a><a href="#services">Services</a><a href="#portfolio">Portfolio</a><a href="#contact">Contact</a></div>
+    </div>
+    <div class="copyright"><span>© <span id="year"></span> Ramla. All rights reserved.</span><span>Designed & built by Ramla.</span></div>
+  </div>
+</footer>
+
+<script>
+  const menuToggle=document.getElementById("menuToggle"),navLinks=document.getElementById("navLinks");
+  menuToggle.addEventListener("click",()=>{navLinks.classList.toggle("open");menuToggle.textContent=navLinks.classList.contains("open")?"✕":"☰"});
+  document.querySelectorAll(".nav-links a").forEach(link=>link.addEventListener("click",()=>{navLinks.classList.remove("open");menuToggle.textContent="☰"}));
+
+  const header=document.getElementById("header");
+  window.addEventListener("scroll",()=>header.classList.toggle("scrolled",window.scrollY>20));
+
+  const sections=document.querySelectorAll("section[id]"),navItems=document.querySelectorAll(".nav-links a");
+  window.addEventListener("scroll",()=>{
+    let current="";
+    sections.forEach(section=>{const top=section.offsetTop-150;if(window.scrollY>=top&&window.scrollY<top+section.offsetHeight)current=section.id});
+    navItems.forEach(link=>{link.classList.toggle("active",link.getAttribute("href")==="#"+current)});
+  });
+
+  const themeToggle=document.getElementById("themeToggle");
+  if(localStorage.getItem("ramla-theme")==="light"){document.body.classList.add("light");themeToggle.textContent="☾"}
+  themeToggle.addEventListener("click",()=>{
+    document.body.classList.toggle("light");
+    const light=document.body.classList.contains("light");
+    themeToggle.textContent=light?"☾":"☀";
+    localStorage.setItem("ramla-theme",light?"light":"dark");
+  });
+
+  const revealObserver=new IntersectionObserver((entries,observer)=>{
+    entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("visible");observer.unobserve(entry.target)}})
+  },{threshold:.12});
+  document.querySelectorAll(".reveal").forEach(el=>revealObserver.observe(el));
+
+  const skillObserver=new IntersectionObserver((entries,observer)=>{
+    entries.forEach(entry=>{if(entry.isIntersecting){document.querySelectorAll(".progress span").forEach(bar=>bar.style.width=bar.dataset.width);observer.unobserve(entry.target)}})
+  },{threshold:.2});
+  skillObserver.observe(document.getElementById("skills"));
+
+  document.querySelectorAll(".faq-question").forEach(question=>{
+    question.addEventListener("click",()=>{
+      const item=question.parentElement,answer=item.querySelector(".faq-answer");
+      document.querySelectorAll(".faq-item").forEach(other=>{
+        if(other!==item){other.classList.remove("open");other.querySelector(".faq-answer").style.maxHeight=null}
+      });
+      item.classList.toggle("open");
+      answer.style.maxHeight=item.classList.contains("open")?answer.scrollHeight+"px":null;
+    });
+  });
+
+  document.getElementById("contactForm").addEventListener("submit",e=>{
+    e.preventDefault();
+    const message=document.getElementById("formMessage");
+    message.style.display="block";
+    e.target.reset();
+    setTimeout(()=>message.style.display="none",6000);
+  });
+
+  document.getElementById("year").textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
